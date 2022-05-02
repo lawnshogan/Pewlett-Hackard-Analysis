@@ -203,4 +203,7 @@ GROUP BY de.dept_no
 ORDER BY de.dept_no;
 -- SELECT * INTO outfile 'C:\Users\shawn\DataScienceMaster\Modules\Module_7_SQL\Repository\Pewlett-Hackard-Analysis\Data' FROM num_employees_retiring;
 
+
+SELECT * FROM num_employees_retiring;
+
 DROP TABLE num_employees_retiring;
