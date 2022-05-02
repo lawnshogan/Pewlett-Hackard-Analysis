@@ -195,9 +195,12 @@ ON ri.emp_no = de.emp_no;
 -- Count, Group By, and Order By
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
+INTO num_employees_retiring
 FROM current_emp as ce
 LEFT JOIN dept_employees as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no
 ORDER BY de.dept_no;
+SELECT * INTO outfile 'C:\Users\shawn\DataScienceMaster\Modules\Module_7_SQL\Repository\Pewlett-Hackard-Analysis\Data' FROM num_employees_retiring;
 
+DROP TABLE num_employees_retiring;
