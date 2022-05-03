@@ -176,29 +176,56 @@ TABLE DROP current_emp;
 -- Count, Group By, and Order By	
 -- Employee count by department number - join the current_emp and dept_emp tables
 SELECT COUNT(ce.emp_no), de.dept_no
+INTO retirement_info_dept
 FROM current_emp as ce
 LEFT JOIN dept_employees as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no
 ORDER BY de.dept_no;
 
+DROP TABLE retirement_info_dept;
+SELECT * FROM retirement_info_dept;
+
+-------------------------------------------------------------------------------------
+-- Employee List
+-- Salaries - Employee Number, FName, LName, Gender, to_date, Salary
+SELECT * FROM salaries
+ORDER BY to_date DESC;
+
+-- Reuse code and add gender
+SELECT e.emp_no,
+    e.first_name,
+	e.last_name,
+    e.gender,
+    s.salary,
+    s.to_date
+INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+
+	
+	
+	
+	
+	
+	
+	
 
 
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+-- Third Join
+INNER JOIN dept_employees as de
+ON (e.emp_no = de.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+     AND (de.to_date = '9999-01-01');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+DROP TABLE emp_info;
+SELECT * FROM emp_info
 
 
 
