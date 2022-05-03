@@ -201,7 +201,9 @@ LEFT JOIN dept_employees as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no
 ORDER BY de.dept_no;
--- SELECT * INTO outfile 'C:\Users\shawn\DataScienceMaster\Modules\Module_7_SQL\Repository\Pewlett-Hackard-Analysis\Data' FROM num_employees_retiring;
+
+
+--SELECT * INTO num_employees_retiring FROM 'C:\Users\shawn\DataScienceMaster\Modules\Module_7_SQL\Repository\Pewlett-Hackard-Analysis\Data';
 
 
 SELECT * FROM num_employees_retiring;
