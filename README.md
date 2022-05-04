@@ -28,17 +28,53 @@ It was important starting out to create an ERD (Entity Relationship Diagram) in 
   <img src="https://github.com/lawnshogan/Pewlett-Hackard-Analysis/blob/main/EmployeeDB.png" width="700"/>
 </p>
 
+Our results show us that right around 64% of of staff will soon retire, which will create significant issues if they are not proactive. Here is the results of total employees retiring categorized into job title.
+
+Syntax: 
+
+- SELECT COUNT(ut.emp_no), ut.title
+- INTO retiring_titles
+- FROM unique_titles as ut
+- GROUP BY title
+- ORDER BY COUNT(title) DESC;
+- SELECT * FROM retiring_titles;
+
+<p align="center">
+  <img src="https://github.com/lawnshogan/Pewlett-Hackard-Analysis/blob/main/Title_Retiring_Count.png" width="700"/>
+</p>
+
+It's important we have a plan in place to replenish these positions and then establish mentors throughout the organization to transition new employees in. Here are my results for that:
+
+Syntax:
+- SELECT DISTINCT ON (e.emp_no) e.emp_no, e.first_name, e.last_name, e.birth_date, de.from_date, de.to_date, ti.title
+- INTO mentorship_eligibility
+- FROM employees as e
+- INNER JOIN dept_employees as de
+- ON (e.emp_no = de.emp_no)
+- INNER JOIN titles as ti
+- ON (e.emp_no = ti.emp_no)
+- WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+- AND (de.to_date = '9999-01-01')
+- ORDER BY e.emp_no, ti.from_date DESC;
+- DROP TABLE mentorship_eligibility;
+- SELECT * FROM mentorship_eligibility;
+
+
+<p align="center">
+  <img src="https://github.com/lawnshogan/Pewlett-Hackard-Analysis/blob/main/Mentors.png" width="700"/>
+</p>
 
 
 
+## **Summary**
 
+**How many roles will need to be filled as the "silver tsunami" begins to make an impact?**
+- 57,668 postions will need filled.
 
+**Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees?**
+- No
 
+## **Additional Analysis**
+1) Another analysis we could do would be to find the average salary of each retiree. From that we can be proactive in coming up with figures that we can use to negotiate for our next line on employees who are hired.
 
-### **Summary**
-
-This analysis was interesting but I also thought the results were somewhat predictable, which can happen in data science. When students try to cheat and change their scores, they are not giving themselves F grades - They are probably giving themselves A and B grades. 
-
-With this in mind, when we alter our data by taking out the 9th graders for a particular school, your overall passing scores will lower, because you are getting rid of the results of higher scores.
-
-The budget per district and per school size will be altered as well as the new data is accounted for and calculated.
+2) We can find age and gender demographics about our current employees and look ahead even further for their retirements. If we wanted to make our workspace more diverse, it could be determined how through another analysis.
